@@ -21,6 +21,7 @@ def OpenFile(fileName=''):
 def GetLinesAndAutomate(_path,numberOfLines):
 
     #open a new tab to remove any text written by default in the address/ search bar
+    time.sleep(1)
     objToClick = pyautogui.locateOnScreen('newTab.jpg', confidence=0.8)
     pyautogui.click(objToClick)
     time.sleep(1)
@@ -32,7 +33,7 @@ def GetLinesAndAutomate(_path,numberOfLines):
          pyautogui.click(objToClick)
 
          # press enter to search for the text in the search bar
-         time.sleep(2)
+         time.sleep(1)
          pyautogui.write(str(_path.readline()))
          pyautogui.hotkey('Enter')
 
