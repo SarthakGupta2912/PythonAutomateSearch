@@ -19,6 +19,10 @@ def OpenFile(fileName=''):
 # Function to automate the task with some time intervals in between to avoid concurrency issues
 def GetLinesAndAutomate(_path,numberOfLines):
 
+    #open a new tab to remove any text written by default in the address/ search bar
+    objToClick = pyautogui.locateOnScreen('newTab.jpg', confidence=0.8)
+    pyautogui.click(objToClick)
+    
     #for loop to iterate through all the lines/sentences in the text file
     for line in range(numberOfLines):
          # search bar of chrome or any browser
@@ -38,5 +42,6 @@ def GetLinesAndAutomate(_path,numberOfLines):
             pyautogui.click(objToClick)
     time.sleep(1)
     pyautogui.alert('Executed successfully!')
+    
 # Specify which text file to open to iterate through and perform the required task
 OpenFile("Test.txt")
