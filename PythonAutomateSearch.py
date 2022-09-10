@@ -3,18 +3,19 @@ import time
 import pyautogui
 import threading
 
-# Browser to open using threading to avoid concurrency issues
-openingBrowserThread = threading.Thread(os.startfile('C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'))
-openingBrowserThread.start()
-
 # Function to open the file with the correct extension or file name
 def OpenFile(fileName=''):
 
-    if  str(fileName) == "" or str(fileName).__contains__('.txt') == False:
+    if  str(fileName) == "" or  str(fileName).endswith('.txt') == False:
         os.startfile(os.getcwd()+'\PythonAutomateSearch.py')
-        pyautogui.alert('Please go back to your python file and enter the correct text file name!')
+        pyautogui.alert('Please go to the line no. 51 and enter the correct text file name in the OpenFile()!')
 
     else:
+       # Browser to open using threading to avoid concurrency issues
+       openingBrowserThread = threading.Thread(
+       os.startfile('C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'))
+       openingBrowserThread.start()
+       openingBrowserThread.join()
        GetLinesAndAutomate(open(fileName),len(open(fileName).readlines()))
 
 # Function to automate the task with some time intervals in between to avoid concurrency issues
@@ -46,5 +47,5 @@ def GetLinesAndAutomate(_path,numberOfLines):
     pyautogui.alert('Executed successfully!')
     
 # Specify which text file to open to iterate through and perform the required task
-openingBrowserThread.join()
+
 OpenFile("Test.txt")
